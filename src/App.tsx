@@ -21,18 +21,12 @@ function App() {
     return () => sub.unsubscribe();
   }, []);
 
-  const buscarLembretes = async () => {
-    const { data: items, errors } = await client.models.Lembrete.list();
-    setLembretes(items);
-  };
-
   const criarLembrete = async () => {
     await client.models.Lembrete.create({
       conteudo: window.prompt("Qual seu lembrete?"),
       feito: false
     })
   };
-
 
   function apagarLembrete(id: string) {
     client.models.Lembrete.delete({ id })
